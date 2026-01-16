@@ -1,3 +1,3 @@
-- Nom:
-- Prénom:
-- URL vercel: 
+- Nom: Mettetal
+- Prénom: Charlotte 
+- URL vercel: tp-r213.netlify.app
