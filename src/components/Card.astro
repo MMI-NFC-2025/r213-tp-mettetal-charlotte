@@ -1,0 +1,18 @@
+---
+const Offre = Astro.props;
+---
+
+<div class="card">
+    <ul>
+        <li>{Offre.nomMaison}</li>
+        <li>{Offre.adresse}</li>
+        <li>Nombre de chambres : {Offre.nbChambres}</li>
+        <li>Nombre de salles de bains : {Offre.nbSdb}</li>
+        <li>Surface : {Offre.surface}</li>
+        <li>{Offre.favori ? "★" : "☆"}</li>
+        <li>Prix : {Offre.prix}</li>
+        <li>
+            <img src={Offre.imgUrl} alt={Offre.imgUrl} />
+        </li>
+    </ul>
+</div>

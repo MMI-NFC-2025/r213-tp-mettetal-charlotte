@@ -3,9 +3,8 @@ import "../styles/global.css";
 import Header from "../components/header.astro";
 import Layout from "../layouts/Layout.astro";
 import Footer from "../components/footer.astro";
-import Image4 from "public/image1.jpg";
-import Image2 from "public/image2.jpg";
-import Image3 from "public/image3.jpg";
+import Image from "public/image.jpg";
+import Card from "../components/Card.astro";
 
 const offres = [
     {
@@ -17,7 +16,7 @@ const offres = [
         nomMaison: "Beverly Springfield",
         prix: 2700,
         surface: 45,
-        imgUrl: "public/image4.jpg",
+        imgUrl: "./image4.jpg",
     },
     {
         adresse: "2699 Green Valley, Highland Lake",
@@ -28,7 +27,7 @@ const offres = [
         nomMaison: "Palm Harbor",
         prix: 2095,
         surface: 42,
-        imgUrl: "public/image2.jpg",
+        imgUrl: "./image2.jpg",
     },
     {
         adresse: "909 Woodland St, Michigan, IN",
@@ -39,7 +38,7 @@ const offres = [
         nomMaison: "Faulkner Ave",
         prix: 4550,
         surface: 80,
-        imgUrl: "public/image3.jpg",
+        imgUrl: "./image3.jpg",
     },
 ];
 ---
@@ -50,26 +49,46 @@ const offres = [
     <h2 style="margin: 10px">
         Découvrez nos offres immobilières. Elles sont pour tout les goûts.
     </h2>
-    <div>
-        {
-            offres.map(
-                (offre) => (
-                    <ul>
-                        <li>{offre.nomMaison}</li>
-                        <li>{offre.adresse}</li>
-                        <li>Nombre de chambres : {offre.nbChambres}</li>
-                        <li>Nombre de salles de bains : {offre.nbSdb}</li>
-                        <li>Surface : {offre.surface}</li>
-                        <li>{offre.favori ? "★" : "☆"}</li>
-                        <li>Prix : {offre.prix}</li>
-                        <li>
-                            <img src={offre.imgUrl} alt={offre.imgUrl} />
-                        </li>
-                    </ul>
-                ),
-                // afficher les nom des maisons sous forme de liste <ul>.
-            )
-        }
-    </div>
+    <button id="favori-button" class="bg-slate-600 rounded-lg text-white p-2">Afficher les favoris</button>
+<div>
+    {
+        offres.map(offre => (
+            <div class="offre" data-favori={offre.favori.toString()}>
+                <!-- Contenu de l'offre -->
+                  <Card
+                        nomMaison={offre.nomMaison}
+                        imgUrl={offre.imgUrl}
+                        adresse={offre.adresse}
+                        prix={offre.prix}
+                        nbChambres={offre.nbChambres}
+                        nbSdb={offre.nbSdb}
+                        surface={offre.surface}
+                    />
+            </div>
+        ))
+    }
+</div>
+<script>
+    //@ts-nocheck
+    const button = document.getElementById('favori-button');
+    let showOnlyFavorites = false;
+    
+    button?.addEventListener('click', () => {
+        showOnlyFavorites = !showOnlyFavorites;
+        const offres = document.querySelectorAll('.offre');
+        
+        offres.forEach(offre => {
+            const isFavori = offre.dataset.favori === 'true';
+            
+            if (showOnlyFavorites) {
+                offre.style.display = isFavori ? 'block' : 'none';
+                button.textContent = 'Afficher tout';
+            } else {
+                offre.style.display = 'block';
+                button.textContent = 'Afficher les favoris';
+            }
+        });
+    });
+</script>
 </Layout>
-<Footer />
+
