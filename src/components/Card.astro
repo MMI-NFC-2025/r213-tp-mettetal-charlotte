@@ -3,8 +3,10 @@ const Offre = Astro.props;
 ---
 
 <div class="card">
-    <ul>
-        <li>{Offre.nomMaison}</li>
+    <ul style="margin: 10px">
+        <li style="font-weight: bold; color: rgb(210, 27, 210)">
+            {Offre.nomMaison}
+        </li>
         <li>{Offre.adresse}</li>
         <li>Nombre de chambres : {Offre.nbChambres}</li>
         <li>Nombre de salles de bains : {Offre.nbSdb}</li>
@@ -12,7 +14,11 @@ const Offre = Astro.props;
         <li>{Offre.favori ? "★" : "☆"}</li>
         <li>Prix : {Offre.prix}</li>
         <li>
-            <img src={Offre.imgUrl} alt={Offre.imgUrl} />
+            <img
+                src={Offre.imgUrl}
+                alt={Offre.imgUrl}
+                style="border-radius: 20px; width: 600px; padding: 10px"
+            />
         </li>
     </ul>
 </div>
