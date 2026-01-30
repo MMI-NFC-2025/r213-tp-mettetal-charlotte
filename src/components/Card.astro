@@ -1,5 +1,8 @@
 ---
-const Offre = Astro.props;
+import PbImage from '../components/PbImage.astro';
+const  Offre = Astro.props.offre;
+console.log(Offre);
+
 ---
 
 <div class="card">
@@ -13,12 +16,6 @@ const Offre = Astro.props;
         <li>Surface : {Offre.surface}</li>
         <li>{Offre.favori ? "★" : "☆"}</li>
         <li>Prix : {Offre.prix}</li>
-        <li>
-            <img
-                src={Offre.imgUrl}
-                alt={Offre.imgUrl}
-                style="border-radius: 20px; width: 600px; padding: 10px"
-            />
-        </li>
+        <PbImage record={Offre} recordImage={Offre.images[0]} />
     </ul>
 </div>

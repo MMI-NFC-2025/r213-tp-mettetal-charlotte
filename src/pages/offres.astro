@@ -22,12 +22,7 @@ import { getOffres } from "../backend.mjs";
         offres.map(offre => (
             <div class="offre" data-favori={offre.favori.toString()}>
                   <Card
-                        nomMaison={offre.nom_maison}
-                        adresse={offre.adresse}
-                        prix={offre.prix}
-                        nbChambres={offre.nb_de_chambres}
-                        nbSdb={offre.nb_de_sdb}
-                        surface={offre.surface}
+                        offre={offre}
                     />
             </div>
         ))
