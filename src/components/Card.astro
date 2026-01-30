@@ -2,14 +2,14 @@
 import PbImage from '../components/PbImage.astro';
 const  Offre = Astro.props.offre;
 console.log(Offre);
-
 ---
 
-<div class="card">
+<div class="max-w-sm rounded overflow-hidden shadow-lg grid grid-cols-1 bg-yellow-200"
+    style="margin:10px">
     <ul style="margin: 10px">
         <li style="font-weight: bold; color: rgb(210, 27, 210)">
             {Offre.nom_maison}
         </li>
-        <PbImage record={Offre} recordImage={Offre.images[0]} />
+        <PbImage record={Offre} recordImage={Offre.images[0]} width={400} height={300}/>
     </ul>
 </div>
