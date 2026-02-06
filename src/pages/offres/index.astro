@@ -21,6 +21,7 @@ const offres = await getOffres();
         class="bg-yellow-600 text-white p-2"
         style="margin: 15px; border-radius: 5px">Afficher les favoris</button
     >
+    <a href={`/offres/${offres.Card}`}>Surface</a>
     <div class="cards-container">
         {
             offres.map((offre) => (

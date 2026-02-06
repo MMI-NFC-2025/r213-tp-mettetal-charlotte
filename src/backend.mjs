@@ -27,3 +27,16 @@ export async function getOffre(id) {
         return {};
     }
 }
+
+export async function getOffresBySurface(surface) {
+    try {
+        const data = await db.collection('maison').getFullList({
+            filter: `Superficie > 80`,
+            sort: '-created',
+        });
+        return data;
+    } catch (error) {
+        console.log('Une erreur est survenue en lisant la liste des maisons', error);
+        return [];
+    }
+}
