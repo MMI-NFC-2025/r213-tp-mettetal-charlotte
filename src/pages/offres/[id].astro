@@ -1,6 +1,7 @@
 ---
 import { getOffre } from "../../backend.mjs";
 import Layout from "../../layouts/Layout.astro";
+import PbImage from "../../components/PbImage.astro";
 
 const { id } = Astro.params;
 const offre = await getOffre(id);
@@ -8,13 +9,21 @@ const offre = await getOffre(id);
 ---
 
 <Layout titre={offre.nom_maison}>
-    <h2>{offre.nom_maison}</h2>
-    <ul>
+    <h2 style="margin: 10px">{offre.nom_maison}</h2>
+    <ul style="margin: 10px;">
         <li>{offre.adresse}</li>
-        <li>{offre.surface}</li>
-        <li>{offre.nb_de_chambres}</li>
-        <li>{offre.nb_de_sdb}</li>
-        <li>{offre.prix}</li>
+        <li>{offre.surface} m²</li>
+        <li>{offre.nb_de_chambres} chambres</li>
+        <li>{offre.nb_de_sdb} salle(s) de bain</li>
+        <li>{offre.prix} €</li>
+        <li> 
+            <PbImage
+                record={offre}
+                recordImage={offre.images ? offre.images[0] : null}
+                width={400}
+                height={300}
+            />
+        </li>
     </ul>
 </Layout>
 

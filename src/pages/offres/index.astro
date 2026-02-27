@@ -9,7 +9,6 @@ import Card from "../../components/Card.astro";
 import { getOffres } from "../../backend.mjs";
 import { filterByPrix } from "../../backend.mjs";
 
-
 let message = "";
 let offres = [];
 if (Astro.request.method === "POST") {
@@ -18,7 +17,7 @@ if (Astro.request.method === "POST") {
     const maxPrix = parseInt(data.get("maxPrix"));
 
     if (minPrix > 0 && maxPrix > 0 && maxPrix > minPrix) {
-         offres = await filterByPrix(minPrix, maxPrix);
+        offres = await filterByPrix(minPrix, maxPrix);
         if (offres.length === 0) {
             message = `Pas d'offres entre ${minPrix}€ et ${maxPrix}€`;
         } else {
@@ -28,7 +27,7 @@ if (Astro.request.method === "POST") {
         message = "Veuillez entrer des valeurs valides pour le prix.";
     }
 } else {
-     offres = await getOffres();
+    offres = await getOffres();
 }
 ---
 
@@ -38,10 +37,15 @@ if (Astro.request.method === "POST") {
     <h2 style="margin: 10px">
         Découvrez nos offres immobilières. Elles sont pour tout les goûts.
     </h2>
-    <form action="/offres" method="POST">
+    <form action="/offres" method="POST" style="padding:10px">
         <input type="number" name="minPrix" placeholder="Prix minimum" />
         <input type="number" name="maxPrix" placeholder="Prix maximum" />
-        <input type="submit" value="Filtrer par prix" />
+        <input
+            class="bg-yellow-600 text-white p-2"
+            style="border-radius: 5px;"
+            type="submit"
+            value="Filtrer par prix"
+        />
     </form>
     {message && <p style="color: orange; margin: 10px">{message}</p>}
     <button
@@ -49,7 +53,16 @@ if (Astro.request.method === "POST") {
         class="bg-yellow-600 text-white p-2"
         style="margin: 15px; border-radius: 5px">Afficher les favoris</button
     >
-    <a href={`/offres/${offres.Card}`}>Surface</a>
+    <button
+        id="bouton-ajout"
+        class="bg-yellow-600 text-white p-2"
+        style="margin: 15px; border-radius: 5px;"
+    >
+        <a href="/offres/add">Ajouter une offre</a>
+    </button>
+    <button class="bg-yellow-600 text-white p-2" style="margin: 15px; border-radius: 5px;">
+        <a href={`/offres/${offres.Card}`}>Surface</a>
+    </button>
     <div class="cards-container">
         {
             offres.map((offre) => (
@@ -59,13 +72,6 @@ if (Astro.request.method === "POST") {
             ))
         }
     </div>
-    <button
-        class="bg-yellow-600 text-white"
-        style="margin: 15px; border-radius: 5px;"
-        id="bouton-ajout"
-    >
-        <a href="/offres/add">Ajouter une offre</a>
-    </button>
     <script>
         //@ts-nocheck
         const button = document.getElementById("favori-button");

@@ -13,9 +13,9 @@ const { titre } = Astro.props;
         <meta name="viewport" content="width=device-width" />
         <title>{titre}</title>
     </head>
-    <body>
+    <body class="flex flex-col min-h-screen">
         <Header />
-        <main>
+        <main class="flex-grow">
             <slot />
         </main>
         <Footer />

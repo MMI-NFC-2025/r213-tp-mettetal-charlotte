@@ -13,29 +13,62 @@ if (Astro.request.method === "POST") {
 ---
 
 <Layout>
-    <h1 class="text-lg">Ajouter une offre</h1>
+    <h1 class="text-lg" style="margin:10px">Ajouter une offre</h1>
     {message && <p class="text-green-600">{message}</p>}
     <form action="/offres/add" method="POST" enctype="multipart/form-data">
-        <input
-            type="text"
-            name="nom_maison"
-            placeholder="Nom de la maison"
-            required
+        <div
             class="w-full mt-2 p-2 border border-gray-300 rounded-md"
-        />
-        <input type="number" name="prix" placeholder="Prix" />
-        <input
-            type="number"
-            name="nb_de_sdb"
-            placeholder="Nombre de salles de bain"
-        />
-        <input
-            type="number"
-            name="nb_de_chambres"
-            placeholder="Nombre de chambres"
-        />
-        <input type="number" name="surface" placeholder="Superficie" />
-        <input type="file" name="images" />
-        <button type="submit">Ajouter</button>
+            style="margin: 5px;"
+        >
+            <input
+                type="text"
+                name="nom_maison"
+                placeholder="Nom de la maison"
+                required
+            />
+        </div>
+        <div
+            class="w-full mt-2 p-2 border border-gray-300 rounded-md"
+            style="margin: 5px;"
+        >
+            <input type="number" name="prix" placeholder="Prix" />
+        </div>
+        <div
+            class="w-full mt-2 p-2 border border-gray-300 rounded-md"
+            style="margin: 5px;"
+        >
+            <input
+                type="number"
+                name="nb_de_sdb"
+                placeholder="Nombre de salles de bain"
+            />
+        </div>
+        <div
+            class="w-full mt-2 p-2 border border-gray-300 rounded-md"
+            style="margin: 5px;"
+        >
+            <input
+                type="number"
+                name="nb_de_chambres"
+                placeholder="Nombre de chambres"
+            />
+        </div>
+        <div
+            class="w-full mt-2 p-2 border border-gray-300 rounded-md"
+            style="margin: 5px;"
+        >
+            <input type="number" name="surface" placeholder="Superficie" />
+        </div>
+        <div
+            class="w-full mt-2 p-2 border border-gray-300 rounded-md"
+            style="margin: 5px;"
+        >
+            <input type="file" name="images" />
+        </div>
+        <button
+            class="bg-yellow-600 text-white p-2"
+            style="border-radius: 5px; margin:10px"
+            type="submit">Ajouter</button
+        >
     </form>
 </Layout>
