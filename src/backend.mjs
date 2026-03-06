@@ -69,3 +69,36 @@ export async function filterByPrix(minPrix, maxPrix) {
         return [];
     }
 }
+
+export async function allAgent(){
+    try{
+        let Agents = await db.collection('Agent').getFullList();
+        return Agents;
+    }catch(error){
+        console.error("error allAgent", error);
+        return null;
+    }
+}
+
+export async function AllOffresByAgent(agentId){
+    try{
+        let Offres = await db.collection('Maison').getFullList({
+            filter: `agentId = "${agentId}"`,
+            sort: '-created',
+        });
+        return Offres;
+    }catch(error){
+        console.error("error AllOffresByAgent", error);
+        return null;
+    }
+}
+
+export async function getAgent(id){
+    try{
+        let Agent = await db.collection('Agent').getOne(id);
+        return Agent;
+    }catch(error){
+        console.error("error getAgent", error);
+        return null;
+    }
+}

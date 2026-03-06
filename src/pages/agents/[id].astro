@@ -1,0 +1,14 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/header.astro";
+import Footer from "../../components/footer.astro"; 
+import { getAgent } from "../../backend.mjs";
+
+const { id } = Astro.params;
+const Agent = await getAgent(id);
+console.log(Agent);
+---
+
+<Layout>
+<h1 style="margin: 10px;">Voici les maisons que propose {Agent?.Prenom} {Agent?.Nom}.</h1>
+</Layout>

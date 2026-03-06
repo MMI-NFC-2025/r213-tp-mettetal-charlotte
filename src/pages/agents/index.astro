@@ -1,0 +1,37 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/header.astro";
+import Footer from "../../components/footer.astro";
+import { allAgent } from "../../backend.mjs";
+
+const Agent = await allAgent();
+console.log(Agent);
+---
+
+<Layout>
+    <h1>
+        Voici la liste de nos agents. Ils trouveront pour vous la perle rare.
+    </h1>
+    {
+        Agent.map((agent) => (
+            <div
+                class="max-w-sm rounded overflow-hidden shadow-lg grid grid-cols-1 bg-yellow-200"
+                style="margin:10px"
+            >
+                <ul style="margin: 10px">
+                    <li style="font-weight: bold;">
+                        {agent.Prenom} {agent.Nom}
+                        <br />
+                        <p> Adresse mail : {agent.email}</p>
+                    </li>
+                </ul>
+                <a
+                    style="margin: 10px; color:rgb(210, 27, 210)"
+                    href={`/agents/${agent.id}`}
+                >
+                    Voir plus
+                </a>
+            </div>
+        ))
+    }
+</Layout>
