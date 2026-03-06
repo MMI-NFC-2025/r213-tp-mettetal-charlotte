@@ -1,14 +1,21 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/header.astro";
-import Footer from "../../components/footer.astro"; 
-import { getAgent } from "../../backend.mjs";
+import Footer from "../../components/footer.astro";
 
 const { id } = Astro.params;
-const Agent = await getAgent(id);
-console.log(Agent);
+const offre = await allMaisonsSortedAgent(id);
 ---
 
-<Layout>
-<h1 style="margin: 10px;">Voici les maisons que propose {Agent?.Prenom} {Agent?.Nom}.</h1>
+<Layout title="Maisons de l'agent">
+    <h1 class="text-5xl texte-cyan-700">Maisons de l'agent</h1>
+    {
+        offre.map((offre) => (
+            <div class="border p-4 m-4 rounded-md">
+                <h2 class="text-3xl text-cyan-700">
+                    {offre.nomMaison} {offre.Adresse}
+                </h2>
+            </div>
+        ))
+    }
 </Layout>

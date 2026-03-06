@@ -93,12 +93,14 @@ export async function AllOffresByAgent(agentId){
     }
 }
 
-export async function getAgent(id){
-    try{
-        let Agent = await db.collection('Agent').getOne(id);
-        return Agent;
-    }catch(error){
-        console.error("error getAgent", error);
-        return null;
+export async function allMaisonsSortedAgent(id) {
+    try {
+        const records = await db.collection('maison').getFullList({
+            filter: emailAgent = "${id}",
+        });
+        return records;
+    } catch (error) {
+        console.error("Error fetching maisons for agent: ", error);
+        return [];
     }
 }
